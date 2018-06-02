@@ -30,7 +30,7 @@
 	\tableofcontents
 \end{frame}
 
-\section{Motivation}
+\section{Motivation and Introduction}
 \begin{frame}
 	\frametitle{Motivation}
 	\begin{itemize}
@@ -58,7 +58,6 @@
 	\end{itemize}
 \end{frame}
 
-\section{Introduction}
 \begin{frame}
 	\frametitle{Introduction}
 	What is a FPGA?
@@ -124,14 +123,90 @@
 \end{frame}
 
 \section{Integration in Database Systems}
+\begin{frame}
+	\frametitle{Integration in Database Systems}
+	How to integrate a FPGA into a Database System?
+	\begin{itemize}
+		\item No complex operations due to small memory
+		\item High IO throughput and degree of parallelism
+		\item Difficult to implement and maintain various algorithms
+	\end{itemize}
+	Conclusion: Basically a good idea to execute simple operations on huge data streams in parallel
+\end{frame}
 
-\section{Query Processing}
+\begin{frame}
+\frametitle{Integration in Database Systems}
+Include graphic showing multiple integrations of FPGAs
+\end{frame}
 
-\subsection{Sorting}
+\section{Database Operations}
 
-\subsection{Joining}
+\subsection{Sort and Join Operations}
+\begin{frame}
+	\frametitle{Sorting with FPGA Reconfiguration}
+	\begin{itemize}
+		\item Sortline sorting, fully pipelined, only in internal memory
+		\item SortTree, not fully pipelined, uses external memory
+		\item Read: Energy aware SQL Query
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{BRAM-BASED FIFO MERGE SORTER}
+\begin{itemize}
+	\item a merge sorter that can efficiently sort larger problem sizes inside the FPGA
+	Koch and Torresen [2011] evaluated the FIFO merge sorter described above. Using 98\% of the available BRAM it was possible to sort 43,000 64-bit keys (344 KB) in a single iteration, i.e., by streaming the keys through the FPGA once. .e circuit could be clocked at MHz D fclk 252 resulting in a throughput of 2 GB/s.
+	\item Read: Data Processing on FPGAs
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{FPGA Framework for Join Operations}
+	\begin{itemize}
+		\item Predicate evaluation and hash joining on FPGA as co processor
+		\item equi-join queries with hash tables for efficient lookups
+		\item Test with start scheme (as used in big warehouse databases)
+		\item Speedup of 11.3 times running at 200Mhz compared to a 4.4Ghz multi-core system
+	\end{itemize}
+\end{frame}
+
+\subsection{Query Execution}
+\begin{frame}
+\frametitle{Query Execution - Glacier}
+\begin{itemize}
+	\item Compiler that translates from SQL to VHDL
+	\item Translated to relational algebra tree, than compiled into hardware curcuits
+	\item draws its predictable runtime performance from statically allocating all hardware resources at circuit compilation time
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Query Execution - FPGA Framework}
+	\begin{itemize}
+		\item TODO: Search in PDFs where this 
+	\end{itemize}
+\end{frame}
+
+\section{Summary}
+\begin{frame}
+	\frametitle{Summary}
+	\begin{itemize}
+		\item Highly flexible use cases
+		\item Reconfiguration vs Frameworks
+		\item High throughput and low power consumption
+		\item Very complicated to implement complex algorithms
+		\item High potential in the future
+	\end{itemize}
+\end{frame}
 
 \section{Sources}
+\begin{frame}
+	\frametitle{Sources - Literature}
+\end{frame}
+
+\begin{frame}
+\frametitle{Sources - Images}
+\end{frame}
 
 \begin{frame}
     \frametitle{Thank you for your attention!}
