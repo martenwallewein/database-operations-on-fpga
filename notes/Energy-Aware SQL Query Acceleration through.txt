@@ -1,0 +1,18 @@
+
+Same as Data Processing in FPGA
+- Here, Netezza FAST engines [9] is a commercially available platform using FPGA support for query acceleration
+- Furthermore, enhancing a static-only system to support more operators will lead to high area requirements regardless whether these operators are used all the time or not.
+- Static hardware designs are inappropriate for two reasons: They either support only a small subset of query operators or, on-the-fly synthesis of query-specific designs might take far too much time.
+
+Workflow:
+- optimizer has to decide which parts of the query should be executed on the host or computed inside the FPGA.
+- If hardware acceleration of a query or subquery is reported to be supported, a reconfiguration manager takes care of a portion of the query execution
+- Operator modules from a module library which reside in the main memory of the host are selected and the query data path is composed on-the-fly
+- After that, the composed data path that may consists of up to 16 different modules are loaded into a partial area inside the FPGA.
+
+- Therefore, tuples are divided into smaller entities called chunks which match the data bus width and may contain one or several attributes.
+
+Sorting:
+- Sortline sorting, fully pipelined, only in internal memory
+- SortTree, not fully pipelined, uses external memory
+- 

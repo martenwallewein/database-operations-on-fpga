@@ -1,0 +1,19 @@
+Why not so wide spreaded:
+- One reason may be that the processing model of FPGAs|and hence the way they are controlled by software| is very different to the traditional von Neumann architecture that computer scientists are used to deal with
+- but it is unclear how FPGAs could be integrated into a DBMS
+
+Core components of FPGA:
+- Lookup Tables: configurable type of logic gates, The heart of every FPGA chip is a number of lookup tables (LUTs), a pro grammable logic unit with k inputs and a single output (where k is typically be tween four and six, see right).
+- registers: Small storage types on chip
+- block RAM: On Chip RAM storage
+- DRAM: Off Chip RAM
+- Hard cores: implementations of often-required functionality directly in silicon.
+- Interconnect: wiring between all available ressources
+
+Limitations:
+- For instance, the high degree of parallelism is con trasted with relatively small amounts of memory to hold state.
+- releasing this parallelism is nontrivial
+- Building essentially a tailor-made piece of hardware takes the engineer beyond what he or she is used to in the software-only world.
+
+PipeRench:
+- If necessary, PipeRench will swap in and out parts of a hardware circuit if the available hardware resources are not suffcient to solve a given task.

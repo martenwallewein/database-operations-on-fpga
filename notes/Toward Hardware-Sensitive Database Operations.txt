@@ -1,0 +1,21 @@
+Introduction:
+- Power Wall: To achieve better clock rates, more power would be needed resulting in higher heat dissipation that cannot be handled
+- Memory Wall: Access times of main memory have not evolved as good as processor capabilities of CPUs, which leads to an underutilization of CPUs.
+-> Vertical scaling not sufficient
+
+Contra: 
+- Unfortunately, in order to provide optimal performance, these specialized architectures usually require algorithms that are specifically tailored to the processing device.
+-> handtuned Algorithms
+
+Pipelining:
+- because when including pipeline registers between each logic unit, data items can be shifted through pipelined instructions at each clock cycle [21].
+- Furthermore, pipelines are programmed into the FPGA, which eliminates pipeline flushes due to branch misprediction.
+
+
+Performance vs Maintainability:
+- Hand-tuned algorithms for different devices lead to high performance but decrease the maintainability of the whole system
+- Duplicate code parts
+-> OpenCL as alternative to build code for multiple devices, not so fast as hand-tuned algorithms
+
+
+

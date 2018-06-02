@@ -1,0 +1,4 @@
+Agenda:
+- FPGA - What is that?
+- What can we do with FPGAs?
+- 

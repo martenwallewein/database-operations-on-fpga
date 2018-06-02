@@ -1,0 +1,5 @@
+- FPGA framework that provides decompression and predicate operations which can be used to filter fact table rows prior to the actual join operation
+- Hash Join as Co Processor
+- Test with star schema, large warehouse table with small dimension tables
+- In this paper we target equi-join queries, and as such can use a hash table (bit vector) for efficient lookups
+- million rows per second, the FPGA design, running at 200 MHz, achieves a speedup of 11.3 times., compared to 4,4 Ghz multi core system

@@ -1,0 +1,53 @@
+FPGA:
+Wikipedia:
+- Field Programmable Gate Array (FPGA)
+- integrated curcuit (ic)
+- designed to be configured by a customer or a designer after manufacturing
+- FPGA configuration is generally specified using a hardware description language (HDL),
+- Contains:
+	- Array of programmable blocks
+	- Hierarchy of reconfigurable interconnects
+	-> Logic blocks, complex connected blocks with additional memory
+
+Design:
+- large resources of logic gates and RAM blocks to implement complex digital computations
+- very fast I/O rates and bidirectional data buses, it becomes a challenge to verify correct timing of valid data within setup time and hold time
+- Floorplanning for ressource allocation
+- DRAM, BRAM ?
+
+
+Data Processing on FPGAs:
+General:
+- Performance gains of specialized hardware can be significant, while power consumption is much less than that of commodity processors
+- More flexible than ASICs
+- Custom hardware allows employing the most effective form of parallelization that best suits a given task.
+
+- Page 34: Performance issues
+- Page 36: Example for data processing
+
+Glacier:
+- Compiler that translates from SQL to VHDL
+- this circuit, when loaded into an FPGA, implements the given query in hardware and at a guaranteed throughput rate.
+- Translated to relational algebra tree, than compiled into hardware curcuits
+- FPGA tool chain, which will verify that the generated circuit can meet the frequency requirements. If a cir cuit cannot meet its requested throughput rate, the situation will be detected at compile time and the user demand rejected by the Glacier system.
+- Glacier draws its predictable runtime performance from statically allocating all hardware resources at circuit compilation time.
+
+Sorting:
+- Base for other operators like GROUP BY
+- Can be bottleneck of query plan -> should be accelerated
+- Sorting Networks:
+	-> The key idea of sorting networks is to stream unsorted data through a series of compare-and-swap elements,
+	-> Only for small data sets
+- BRAM-BASED FIFO MERGE SORTER
+	-> a merge sorter that can efficiently sort larger problem sizes inside the FPGA
+	Koch and Torresen [2011] evaluated the FIFO merge sorter described above. Using 98% of the available BRAM it was possible to sort 43,000 64-bit keys (344 KB) in a single iteration, i.e., by streaming the keys through the FPGA once. .e circuit could be clocked at MHz D fclk 252 resulting in a throughput of 2 GB/s.
+
+	
+TODO: Skyline operator?
+
+secure data processing:
+
+
+Summary:
+- FPGA only not applicable for complex problems
+	-> Only a part of the chain of system components

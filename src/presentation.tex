@@ -1,0 +1,139 @@
+ \documentclass{beamer}
+
+\usetheme{MagdeburgFIN}
+\usefonttheme{structurebold}
+\usepackage{graphicx}
+\usepackage{wrapfig,lipsum}
+\usepackage{float}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+
+\title{Database Operations on FPGAs}
+\subtitle{Database Operations on FPGAs}
+\author{Johann Wagner, Johannes Wünsche, Marten Wallewein-Eising, Robert Jenderise, Benedikt Zeilinger}
+\date{\today}
+\institute{Otto von Guericke University, Magdeburg}
+
+% Milestone II: Concept & additional literature research
+
+\begin{document}
+
+\begin{frame}[plain]
+ \titlepage
+\end{frame}
+
+\section[Agenda]{}
+\begin{frame}
+	\frametitle{Agenda}
+	\tableofcontents
+\end{frame}
+
+\section{Motivation}
+\begin{frame}
+	\frametitle{Motivation}
+	\begin{itemize}
+		\item Screen of complex HDL code?
+		\item Why should we consider this stuff???
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Problems with Moores Law}
+	\begin{itemize}
+		\item Memory/Power wall - von Neumann Architecture
+		\item Not enough to increase cores and speed
+		\item Fast growing data amounts (times 10 every 5 years)
+		\item ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Possible Solutions}
+	\begin{itemize}
+		\item Usage of different core types in CPU
+		\item Usage of highly adapted Hardware (ASIC)
+		\item Usage of reconfigurable, programmable Hardware => FPGA
+	\end{itemize}
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+	\frametitle{Introduction}
+	What is a FPGA?
+	\begin{itemize}
+		\item Field programmably gate array
+		\item Questions?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{FPGA - Basics}
+	\begin{itemize}
+		\item Large resources of logic gates and RAM blocks to implement complex digital computations
+		\item Designed to be configured after manufacturing
+		\item Configuration is generally specified using a hardware description language (HDL)
+		\item Contains:
+			\begin{itemize} 
+				\item Array of programmable blocks
+				\item Hierarchy of reconfigurable interconnects
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{FPGA - Components}
+	\begin{itemize}
+		\item Lookup Tables: configurable type of logic gates
+		\item Registers/Flip-Flops: Small storage types on chip
+		\item BRAM: On Chip RAM storage
+		\item DRAM: Off Chip RAM
+		\item Hard cores: implementations of often-required functionality directly in silicon.
+		\item Interconnect: wiring between all available ressources
+	\end{itemize}
+\end{frame}
+
+\section{Benefits and Drawbacks}
+\begin{frame}
+	\frametitle{Benefits of FPGAs}
+	\begin{itemize}
+		\item Very low power consumption
+		\item High flexibility in programming hardware components
+		\item Dynamic reconfiguration at runtime
+		\item High degree of data and instruction parallelism
+	\end{itemize}
+	
+	\begin{center}
+		"Custom hardware allows employing the most effective form of parallelization that best suits a given task."
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Drawbacks of FPGAs}
+\begin{itemize}
+	\item Small amount of memory compared to high degree of parallelism
+	\item High parallelism is very difficult to achieve
+	\item Difficult implementation of complex algorithms
+	\item Bottleneck moves to data transfer to the FPGA 
+\end{itemize}
+\begin{center}
+	"Building essentially a tailor-made piece of hardware takes the engineer beyond what he or she is used to in the software-only world."
+\end{center}
+
+\end{frame}
+
+\section{Integration in Database Systems}
+
+\section{Query Processing}
+
+\subsection{Sorting}
+
+\subsection{Joining}
+
+\section{Sources}
+
+\begin{frame}
+    \frametitle{Thank you for your attention!}
+\end{frame}
+\end{document}

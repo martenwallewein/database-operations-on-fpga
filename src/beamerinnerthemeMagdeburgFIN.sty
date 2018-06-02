@@ -1,0 +1,117 @@
+% Copyright 2007 by Till Tantau
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/inner/beamerinnerthemeMagdeburgFIN.sty,v 1.20 2007/01/28 20:48:30 tantau Exp $
+
+
+\mode<presentation>
+
+% Some images:
+
+\pgfdeclareimage[width=14pt,height=12pt]{beamericonbook}{beamericonbook}
+\pgfdeclareimage[width=14pt,height=12pt]{beamericonbookshaded}{beamericonbook.20}
+\pgfaliasimage{beamericonbook.!20opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!15opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!10opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!5opaque}{beamericonbookshaded}
+\pgfaliasimage{beamericonbook.!2opaque}{beamericonbookshaded}
+\pgfdeclareimage[width=11pt,height=14pt]{beamericonarticle}{beamericonarticle}
+\pgfdeclareimage[width=11pt,height=14pt]{beamericonarticleshaded}{beamericonarticle.20}
+\pgfaliasimage{beamericonarticle.!20opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!15opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!10opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!5opaque}{beamericonarticleshaded}
+\pgfaliasimage{beamericonarticle.!2opaque}{beamericonarticleshaded}
+\pgfdeclareimage[height=1.5cm]{logofront}{logo}
+\pgfdeclareimage[height=1cm]{logo}{logo}
+% Headline and footline
+\definecolor{stanzi@other}{RGB}{1,104,181}
+
+
+% Title page: MagdeburgFIN
+
+\defbeamertemplate*{title page}{MagdeburgFIN}[1][]
+{
+   \vfill
+   \vskip3.5em
+   \begin{beamercolorbox}[sep=0cm,#1]{logotitle}
+     \pgfuseimage{logofront}
+   \end{beamercolorbox}
+   \vskip3em
+   \begin{beamercolorbox}[sep=0pt,#1]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%
+
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=2pt,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=2pt,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=2pt,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    \begin{beamercolorbox}[sep=2em,wd=\paperwidth, ht=6.4255em]{postit}
+      \vbox{
+      \vskip0.6pt%
+      }
+    \end{beamercolorbox} 
+}
+
+
+%
+% Table of contents
+%
+
+
+
+
+
+% (sub-)section in toc: MagdeburgFIN
+
+\defbeamertemplate*{section in toc}{MagdeburgFIN}
+{\inserttocsection\par}
+
+\defbeamertemplate*{subsection in toc}{MagdeburgFIN}
+{\leavevmode\leftskip=1.5em\inserttocsubsection\par}
+
+\defbeamertemplate*{subsubsection in toc}{MagdeburgFIN}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\leftskip=3em%
+  \usebeamerfont{subsubsection in toc}\inserttocsubsubsection\par}
+
+
+% (sub-)section in toc shaded, MagdeburgFIN
+
+\defbeamertemplate*{section in toc shaded}{MagdeburgFIN}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{section in toc}\end{colormixin}\unskip}
+
+\defbeamertemplate*{subsection in toc shaded}{MagdeburgFIN}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{subsection in toc}\end{colormixin}\unskip}
+
+\defbeamertemplate*{subsubsection in toc shaded}{MagdeburgFIN}[1][20]
+{\begin{colormixin}{#1!parent.bg}\usebeamertemplate{subsubsection in toc}\end{colormixin}\unskip}
+
+
+% Itemize items, MagdeburgFIN
+
+\defbeamertemplate*{itemize item}{MagdeburgFIN}{\scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\bullet$}}
+\defbeamertemplate*{itemize subitem}{MagdeburgFIN}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\bullet$}}
+\defbeamertemplate*{itemize subsubitem}{MagdeburgFIN}{\tiny\raise1.5pt\hbox{\donotcoloroutermaths$\bullet$}}
+
+
+% Enumerate items, MagdeburgFIN
+
+\defbeamertemplate*{enumerate item}{MagdeburgFIN}{\insertenumlabel.}
+\defbeamertemplate*{enumerate subitem}{MagdeburgFIN}{\insertenumlabel.\insertsubenumlabel}

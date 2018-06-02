@@ -1,0 +1,21 @@
+- OLTP VS OLAP:
+	-> Dont waste CPU ressources for OLAP that are necessary for OLTP
+
+- software-programmed query control block
+- FPGA connected via PCI Express
+- Save up to 94% CPU ressouces
+
+- The accelerator has been made customizable by architecting a query control block, and making the FPGA logic behave as an interpreter of the query control block.
+	-> VS Dynamic reconfiguration (expensive)
+
+- Multiple Prediction Evaluation Units
+-To that end, each PE is designed to perform 1 of 6 inequality operations
+
+Why not SIMD or GPU:
+- GPUs offer a relatively fixed architecture, however, leading to limitations similar to those of SIMD architectures.
+
+Why not reconfigure:
+- Generating a new FPGA hardware image for each query and reprogramming the FPGA is not viable since synthesis and place-and-route typically take hours to finish
+- Reprogramming the FPGA with a pre-generated FPGA image is plausible, though for queries that operate on relatively small amounts of data, the reconfiguration time
+- Moreover, even a slight change in the query would require regeneration of the FPGA image and reconfiguration of the FPGA.
+
