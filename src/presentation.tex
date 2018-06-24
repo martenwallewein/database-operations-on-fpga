@@ -12,7 +12,7 @@
 
 \title{Database Operations on FPGAs}
 \subtitle{Database Operations on FPGAs}
-\author{Johann Wagner, Johannes Wünsche, Marten Wallewein-Eising, Robert Jenderise, Benedikt Zeilinger}
+\author{Marten Wallewein-Eising}
 \date{\today}
 \institute{Otto von Guericke University, Magdeburg}
 
@@ -33,38 +33,74 @@
 \section{Motivation and Introduction}
 \begin{frame}
 	\frametitle{Motivation}
-	\begin{itemize}
-		\item Screen of complex HDL code?
-		\item Why should we consider this stuff???
-	\end{itemize}
+	\includegraphics[width=1.0\textwidth]{img/complex_source.png}
+	%\begin{itemize}
+	%	\item Screen of complex HDL code?
+	%	\item Why should we consider this stuff???
+	%\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Problems with Moores Law}
-	\begin{itemize}
-		\item Memory/Power wall - von Neumann Architecture
-		\item Not enough to increase cores and speed
-		\item Fast growing data amounts (times 10 every 5 years)
-		\item ...
-	\end{itemize}
+	"Number of transistors in integrated circuit doubles about every two years"
+	\vspace*{0.5cm}
+	\begin{columns}
+		\begin{column}{0.3\textwidth}
+			\includegraphics[width=1.0\textwidth]{img/gordon_moore.jpg}
+			Gordon Moore
+		\end{column}
+		\begin{column}{0.66\textwidth}
+				\begin{itemize}
+				\item More transistors lead to more heat
+				\item Not enough to increase cores and speed
+				\item Memory/Power wall in von Neumann Architecture
+				\item Fast growing data amounts (times 10 every 5 years)
+				\item ...
+			\end{itemize}
+		\end{column}
+	\end{columns}
+
 \end{frame}
 
 \begin{frame}
 	\frametitle{Possible Solutions}
+	Usage of different core types in CPU
 	\begin{itemize}
-		\item Usage of different core types in CPU
-		\item Usage of highly adapted Hardware (ASIC)
-		\item Usage of reconfigurable, programmable Hardware => FPGA
+		\item More variability, but cores must be generalized
 	\end{itemize}
+	\vspace*{0.5cm}%
+	Usage of highly adapted Hardware (ASIC)
+	\begin{itemize}
+		\item High performance, but problem specific
+	\end{itemize}
+	\vspace*{0.5cm}%
+	Usage of reconfigurable, programmable Hardware (FPGA)
+	\begin{itemize} 
+		\item Mix between generalization and performance
+	\end{itemize}
+	%\begin{itemize}
+	%	\item Usage of different core types in CPU
+	%	\item Usage of highly adapted Hardware (ASIC)
+	%	\item Usage of reconfigurable, programmable Hardware => FPGA
+	%	\end{itemize}
 \end{frame}
 
 \begin{frame}
 	\frametitle{Introduction}
-	What is a FPGA?
-	\begin{itemize}
-		\item Field programmably gate array
-		\item Questions?
-	\end{itemize}
+	\begin{center}
+		\huge What is a FPGA?
+	\end{center}
+	
+	"FPGAs consist of a plethora of uncommitted hardware resources, which can be
+	programmed after manufacturing, i.e., in the field."
+	%\begin{itemize}
+	%	\item Field programmably gate array
+	%	\item Questions?
+	%\end{itemize}
+	\vspace*{3cm}
+	\begin{center}
+		\small \emph{Data Processing on FPGAs}, Jens Teubner and Louis Woods 
+	\end{center}
 \end{frame}
 
 \begin{frame}
@@ -73,12 +109,13 @@
 		\item Large resources of logic gates and RAM blocks to implement complex digital computations
 		\item Designed to be configured after manufacturing
 		\item Configuration is generally specified using a hardware description language (HDL)
-		\item Contains:
-			\begin{itemize} 
-				\item Array of programmable blocks
-				\item Hierarchy of reconfigurable interconnects
-			\end{itemize}
+		%\item Contains:
+		%	\begin{itemize} 
+		%		\item Array of programmable blocks
+		%		\item Hierarchy of reconfigurable interconnects
+		%	\end{itemize}
 	\end{itemize}
+\includegraphics[width=1.0\textwidth]{img/fpga.jpg}
 \end{frame}
 
 \begin{frame}
@@ -102,36 +139,44 @@
 		\item Dynamic reconfiguration at runtime
 		\item High degree of data and instruction parallelism
 	\end{itemize}
-	
+	\vspace*{0.3cm}
 	\begin{center}
 		"Custom hardware allows employing the most effective form of parallelization that best suits a given task."
+	\end{center}
+	\vspace*{0.1cm}
+	\begin{center}
+		\small \emph{Data Processing on FPGAs}, Jens Teubner and Louis Woods 
 	\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Drawbacks of FPGAs}
-\begin{itemize}
-	\item Small amount of memory compared to high degree of parallelism
-	\item High parallelism is very difficult to achieve
-	\item Difficult implementation of complex algorithms
-	\item Bottleneck moves to data transfer to the FPGA 
-\end{itemize}
-\begin{center}
-	"Building essentially a tailor-made piece of hardware takes the engineer beyond what he or she is used to in the software-only world."
-\end{center}
-
+	\begin{itemize}
+		\item Small amount of memory compared to high degree of parallelism
+		\item High parallelism is very difficult to achieve
+		\item Difficult implementation of complex algorithms
+		\item Bottleneck moves to data transfer to the FPGA 
+	\end{itemize}
+	\begin{center}
+		"Building essentially a tailor-made piece of hardware takes the engineer beyond what he or she is used to in the software-only world."
+	\end{center}
+	\begin{center}
+		\small \emph{FPGAs: A New Point in the Database Design Space}, Mueller et al.
+	\end{center}
 \end{frame}
 
 \section{Integration in Database Systems}
 \begin{frame}
 	\frametitle{Integration in Database Systems}
-	How to integrate a FPGA into a Database System?
+	
+	\textbf{How to integrate a FPGA into a Database System?}
 	\begin{itemize}
 		\item No complex operations due to small memory
 		\item High IO throughput and degree of parallelism
 		\item Difficult to implement and maintain various algorithms
 	\end{itemize}
-	Conclusion: Basically a good idea to execute simple operations on huge data streams in parallel
+	\vspace*{1cm}
+	\textbf{Conclusion: Basically, execute simple operations on huge data streams in parallel}
 \end{frame}
 
 \begin{frame}
@@ -206,8 +251,12 @@ Include graphic showing multiple integrations of FPGAs
 
 \begin{frame}
 \frametitle{Sources - Images}
+\begin{itemize}
+	\item \url{https://wyncode.co/funniest-computer-programming-memes/}
+	\item \url{https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Gordon_Moore.jpg/220px-Gordon_Moore.jpg}
+	\item \url{https://opsero.com/fpga-programming/}
+\end{itemize}
 \end{frame}
-
 \begin{frame}
     \frametitle{Thank you for your attention!}
 \end{frame}
