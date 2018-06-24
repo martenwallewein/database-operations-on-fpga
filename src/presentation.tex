@@ -181,55 +181,152 @@
 
 \begin{frame}
 \frametitle{Integration in Database Systems}
-Include graphic showing multiple integrations of FPGAs
+%Include graphic showing multiple integrations of FPGAs
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{img/integration.PNG}
+\end{center}
+\begin{center}
+	\small \emph{Database Analytics Acceleration using FPGAs}, Sukhwani et al.
+\end{center}
 \end{frame}
 
 \section{Database Operations}
-
-\subsection{Sort and Join Operations}
 \begin{frame}
-	\frametitle{Sorting with FPGA Reconfiguration}
-	\begin{itemize}
-		\item Sortline sorting, fully pipelined, only in internal memory
-		\item SortTree, not fully pipelined, uses external memory
-		\item Read: Energy aware SQL Query
-	\end{itemize}
+	\begin{center}
+		\huge Database Operations
+	\end{center}
 \end{frame}
 
+\subsection{Co-Processing: Filter and Join Operations}
 \begin{frame}
-\frametitle{BRAM-BASED FIFO MERGE SORTER}
+\frametitle{Filtering with FPGA Reconfiguration}
+Enery aware SQL Query Acceleration:
 \begin{itemize}
-	\item a merge sorter that can efficiently sort larger problem sizes inside the FPGA
-	Koch and Torresen [2011] evaluated the FIFO merge sorter described above. Using 98\% of the available BRAM it was possible to sort 43,000 64-bit keys (344 KB) in a single iteration, i.e., by streaming the keys through the FPGA once. .e circuit could be clocked at MHz D fclk 252 resulting in a throughput of 2 GB/s.
-	\item Read: Data Processing on FPGAs
+	\item Optimizer decides which parts are executed on FPGA
+	\item Loading required modules for Query on Partial Area
+	\item Tuples passed to FPGA and processed by modules
 \end{itemize}
+\vspace*{0.3cm}
+Result:
+\begin{itemize}
+	\item Performance comparable to standard x86 systems
+	\item 20 times higher energy-efficiency compared to MySQL
+\end{itemize}
+%\vspace*{2cm}
+\begin{center}
+	\small \emph{Energy-Aware SQL Query Acceleration through FPGA-Based Dynamic Partial Reconfiguration}, Becher et al.
+\end{center}
 \end{frame}
+
+\begin{frame}
+	\frametitle{Filtering with FPGA Reconfiguration}
+	\includegraphics[width=0.9\textwidth]{img/reconf.png}
+	\begin{center}
+		\small \emph{Energy-Aware SQL Query Acceleration through FPGA-Based Dynamic Partial Reconfiguration}, Becher et al.
+	\end{center}
+\end{frame}
+
+%\begin{frame}
+%\frametitle{Sorting with MergeSort}
+%\begin{itemize}
+%	\item Due to high parallelism, a merge sorter can sort large datasets in short time
+%	\item 
+%	Koch and Torresen [2011] evaluated the FIFO merge sorter described above. Using 98\% of the available BRAM it was possible to sort 43,000 64-bit keys (344 KB) in a single iteration, i.e., by streaming the keys through the FPGA once. .e circuit could be clocked at MHz D fclk 252 resulting in a throughput of 2 GB/s.
+%	\item Read: Data Processing on FPGAs
+%\end{itemize}
+%\end{frame}
 
 \begin{frame}
 	\frametitle{FPGA Framework for Join Operations}
+	Processing hash-joins with a star scheme:
 	\begin{itemize}
 		\item Predicate evaluation and hash joining on FPGA as co processor
-		\item equi-join queries with hash tables for efficient lookups
-		\item Test with start scheme (as used in big warehouse databases)
-		\item Speedup of 11.3 times running at 200Mhz compared to a 4.4Ghz multi-core system
+		\item Equi-join queries with hash tables for efficient lookups
+		\item 64Bit columns, FPGA running on 200Mhz 
 	\end{itemize}
+	Results:
+	\begin{itemize}
+		\item Speedup of 11.3 times compared to a 4.4Ghz multi-core system
+	\end{itemize}
+	\begin{center}
+		\small \emph{Accelerating Join Operation for Relational Databases with FPGAs}, Halstead et al.
+	\end{center}
 \end{frame}
 
-\subsection{Query Execution}
+\subsection{Complete Query Execution}
+\begin{frame}
+	\frametitle{Complete Query Execution}
+	\begin{center}
+		\huge{Reconfiguration vs Frameworks}
+	\end{center}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Query Execution - Reconfiguration}
+	Glacier: Component Library and SQL to VHDL Compiler 
+	\vspace*{0.2cm}
+	\begin{columns}
+		\begin{column}{0.48\textwidth}
+			\includegraphics[width=1.0\textwidth]{img/glacier_2.png}
+		\end{column}
+		\begin{column}{0.48\textwidth}
+			\begin{itemize}
+				\item Translated to relational algebra tree, than compiled into hardware curcuits
+				\item FPGA is reconfigured with the compilation result 
+				\item Throughput rate guaranteed at compilation time
+				%\item Draws its predictable runtime performance from statically allocating all hardware resources at circuit compilation time
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\vspace*{0.2cm}
+	\begin{center}
+		\small \emph{Glacier: A Query-to-Hardware Compiler}, Mueller et al.
+	\end{center}
+\end{frame}
+
 \begin{frame}
 \frametitle{Query Execution - Glacier}
-\begin{itemize}
-	\item Compiler that translates from SQL to VHDL
-	\item Translated to relational algebra tree, than compiled into hardware curcuits
-	\item draws its predictable runtime performance from statically allocating all hardware resources at circuit compilation time
-\end{itemize}
+\begin{center}
+	\includegraphics[width=1.0\textwidth]{img/glacier.png}
+\end{center}
+\begin{center}
+	\small \emph{Glacier: A Query-to-Hardware Compiler}, Mueller et al.
+\end{center}
+
 \end{frame}
 
 \begin{frame}
-	\frametitle{Query Execution - FPGA Framework}
+	\frametitle{Query Execution - Framework}
+	FPGA based Acceleration Engine:
 	\begin{itemize}
-		\item TODO: Search in PDFs where this 
+		\item Approach: Reconfiguration costs time
+		\item Multiple generic Predicate Evaluation Units (PE)
+		\item Each PE can evaluate a column of the row
 	\end{itemize}
+	\vspace*{0.2cm}
+	\includegraphics[width=0.9\textwidth]{img/row_stream.PNG}
+	\vspace*{0.1cm}
+	\begin{center}
+		\small \emph{Database Analytics Acceleration using FPGAs, Sukhwani et al.}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Query Execution - Framework}
+	FPGA based Acceleration Engine:
+	\begin{itemize}
+		\item Benefits from highly pipelining
+		\item Use compression to fully load the pipeline
+	\end{itemize}
+	
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{img/engine_eval.png}
+	\end{center}
+
+	\begin{center}
+		\small \emph{Database Analytics Acceleration using FPGAs, Sukhwani et al.}
+	\end{center}
 \end{frame}
 
 \section{Summary}
