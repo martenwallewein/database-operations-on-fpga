@@ -88,7 +88,7 @@
 \begin{frame}
 	\frametitle{Introduction}
 	\begin{center}
-		\huge What is a FPGA?
+		\huge What is an FPGA?
 	\end{center}
 	
 	"FPGAs consist of a plethora of uncommitted hardware resources, which can be
@@ -154,7 +154,7 @@
 	\begin{itemize}
 		\item Small amount of memory compared to high degree of parallelism
 		\item High parallelism is very difficult to achieve
-		\item Difficult implementation of complex algorithms
+		\item Difficult and time consuming implementation of complex algorithms
 		\item Bottleneck moves to data transfer to the FPGA 
 	\end{itemize}
 	\begin{center}
@@ -169,7 +169,7 @@
 \begin{frame}
 	\frametitle{Integration in Database Systems}
 	
-	\textbf{How to integrate a FPGA into a Database System?}
+	\textbf{How to integrate an FPGA into a Database System?}
 	\begin{itemize}
 		\item No complex operations due to small memory
 		\item High IO throughput and degree of parallelism
@@ -200,7 +200,7 @@
 \subsection{Co-Processing: Filter and Join Operations}
 \begin{frame}
 \frametitle{Filtering with FPGA Reconfiguration}
-Enery aware SQL Query Acceleration:
+Energy aware SQL Query Acceleration:
 \begin{itemize}
 	\item Optimizer decides which parts are executed on FPGA
 	\item Loading required modules for Query on Partial Area
@@ -240,7 +240,7 @@ Result:
 	\frametitle{FPGA Framework for Join Operations}
 	Processing hash-joins with a star scheme:
 	\begin{itemize}
-		\item Predicate evaluation and hash joining on FPGA as co processor
+		\item Predicate evaluation and hash joining on FPGA as co-processor
 		\item Equi-join queries with hash tables for efficient lookups
 		\item 64Bit columns, FPGA running on 200Mhz 
 	\end{itemize}
@@ -251,6 +251,23 @@ Result:
 	\begin{center}
 		\small \emph{Accelerating Join Operation for Relational Databases with FPGAs}, Halstead et al.
 	\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary: FPGA for Database Co-Processing}
+Pro's:
+\begin{itemize}
+	\item High throughput and low power consumption
+	\item Simple operations reach high parallelization
+\end{itemize}
+\vspace*{0.3cm}
+Con's:
+\begin{itemize}
+	\item Bottleneck moves to data transfer to the FPGA
+\end{itemize}
+\vspace*{0.3cm}
+\textbf{Conclusion:} For OLAP queries useful, OLTP query performance may suffer from data transfer time
+
 \end{frame}
 
 \subsection{Complete Query Execution}
@@ -272,7 +289,7 @@ Result:
 		\end{column}
 		\begin{column}{0.48\textwidth}
 			\begin{itemize}
-				\item Translated to relational algebra tree, than compiled into hardware curcuits
+				\item Translated to relational algebra tree, then compiled into hardware curcuits
 				\item FPGA is reconfigured with the compilation result 
 				\item Throughput rate guaranteed at compilation time
 				%\item Draws its predictable runtime performance from statically allocating all hardware resources at circuit compilation time
@@ -286,7 +303,7 @@ Result:
 \end{frame}
 
 \begin{frame}
-\frametitle{Query Execution - Glacier}
+\frametitle{Query Execution - Reconfiguration}
 \begin{center}
 	\includegraphics[width=1.0\textwidth]{img/glacier.png}
 \end{center}
@@ -316,7 +333,7 @@ Result:
 	\frametitle{Query Execution - Framework}
 	FPGA based Acceleration Engine:
 	\begin{itemize}
-		\item Benefits from highly pipelining
+		\item Benefits from extensive pipelining
 		\item Use compression to fully load the pipeline
 	\end{itemize}
 	
@@ -329,9 +346,22 @@ Result:
 	\end{center}
 \end{frame}
 
+\begin{frame}
+\frametitle{Reconfiguration vs Frameworks?}
+\begin{center}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		& Reconfiguration & Framework \\ \hline
+		Pro's & Exact query matching & \\ \hline
+		Con's & Reconfiguration time & \\ \hline
+	\end{tabular}
+\end{center}
+
+\end{frame}
+
 \section{Summary}
 \begin{frame}
-	\frametitle{Summary}
+	\frametitle{Integrate an FPGA into a Database System?}
 	\begin{itemize}
 		\item Highly flexible use cases
 		\item Reconfiguration vs Frameworks
