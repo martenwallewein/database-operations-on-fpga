@@ -258,7 +258,8 @@ Result:
 Pro's:
 \begin{itemize}
 	\item High throughput and low power consumption
-	\item Simple operations reach high parallelization
+	\item Simple (filter) operations reach high parallelization
+	\item Even join operations applicable with high performance increase
 \end{itemize}
 \vspace*{0.3cm}
 Con's:
@@ -352,8 +353,11 @@ Con's:
 	\begin{tabular}{| c | c | c |}
 		\hline
 		& Reconfiguration & Framework \\ \hline
-		Pro's & Exact query matching & \\ \hline
-		Con's & Reconfiguration time & \\ \hline
+		Pro's && \\ \hline
+		& Exact query matching & No compilation needed\\ \hline
+			  & High flexibility  & Reuse of generic components (PE) \\ \hline  
+		Con's && \\ \hline
+		& Compilation time &  Not all queries may be supported \\ \hline
 	\end{tabular}
 \end{center}
 
@@ -362,13 +366,15 @@ Con's:
 \section{Summary}
 \begin{frame}
 	\frametitle{Integrate an FPGA into a Database System?}
+	\textbf{Integrate if possible!}
 	\begin{itemize}
-		\item Highly flexible use cases
-		\item Reconfiguration vs Frameworks
-		\item High throughput and low power consumption
-		\item Very complicated to implement complex algorithms
-		\item High potential in the future
+		\item Depends on the design of the system
+		\item As co-processor easier to integrate, transfer bottleneck may be problematic
+		\item Full query execution more difficult, but may lead to higher performance 
 	\end{itemize}
+	\vspace*{0.5cm}
+	\textbf{$\Rightarrow$ High potential to lower power consumption and to increase performance!}
+
 \end{frame}
 
 \section{Sources}
